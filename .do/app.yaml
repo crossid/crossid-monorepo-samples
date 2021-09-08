@@ -1,0 +1,35 @@
+name: sample-monorepo
+static_sites:
+  - name: react-frontend
+    environment_slug: node-js
+    github:
+      repo: crossid/sample-do-monorepo
+      branch: main
+      deploy_on_push: true
+    source_dir: frontend-react
+    routes:
+      - path: /react
+    catchall_document: index.html
+    build_command: npm run build
+    envs:
+      - key: REACT_APP_CID_TENANT_ID
+        value: "<tenant>"
+      - key: REACT_APP_CID_CLIENT_ID
+        value: "<client_id>"
+      - key: REACT_APP_CID_AUDIENCE
+        value: "<app_id>"
+      - key: REACT_APP_CID_SCOPE
+        value: "openid"
+services:
+  - name: api-go
+    environment_slug: go
+    github:
+      repo: crossid/sample-monorepo
+      branch: main
+      deploy_on_push: true
+    source_dir: api-go
+    routes:
+      - path: /api-go
+    envs:
+      - key: ISSUER_BASE_URL
+        value: "https://<tenant>.crossid.io/oauth2"
