@@ -192,11 +192,30 @@ export default function Layout({ children }) {
         )}
       </nav>
       <div className="py-10">
-        <header>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {children}
-          </div>
-        </header>
+        <main>
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">{children}</div>
+        </main>
+        {!idToken && (
+          <footer>
+            <div className="max-w-7xl mx-auto py-48 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+              <div className="mt-8 md:mt-0 md:order-1">
+                <p className="text-center text-base text-gray-400">
+                  Don't have a Crossid tenant?
+                  <a
+                    href="https://crossid.io/signup"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-indigo-700"
+                  >
+                    {" "}
+                    register
+                  </a>
+                  <span> for free.</span>
+                </p>
+              </div>
+            </div>
+          </footer>
+        )}
       </div>
     </div>
   );
