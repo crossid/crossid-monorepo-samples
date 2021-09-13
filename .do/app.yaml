@@ -16,8 +16,8 @@ static_sites:
         value: "<tenant>"
       - key: REACT_APP_CID_CLIENT_ID
         value: "<client_id>"
-      - key: REACT_APP_CID_AUDIENCE
-        value: "<app_id>"
+      #- key: REACT_APP_CID_AUDIENCE
+      #  value: "<app_id>"
       - key: REACT_APP_CID_SCOPE
         value: "openid"
 services:

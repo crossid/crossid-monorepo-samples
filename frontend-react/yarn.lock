@@ -1205,17 +1205,17 @@
     "exec-sh" "^0.3.2"
     "minimist" "^1.2.0"
 
-"@crossid/crossid-react@^0.2.0":
-  "integrity" "sha512-7HNMQxGSBocXfOpRgjRJWsJZGCsaszLm/XZ24Zc5ieJ2xE67xLM7XA+PoNjNvdpzR31pPk/fm7rtnNRLGhQwiw=="
-  "resolved" "https://registry.npmjs.org/@crossid/crossid-react/-/crossid-react-0.2.0.tgz"
-  "version" "0.2.0"
+"@crossid/crossid-react@^0.2.1":
+  "integrity" "sha512-oL0L3k1T7kMXVSVjPF3tQLGGfR2D8HOz9Qr4pT95DD9YZKYK5VxrbZDqp+pD80B0Jp6SzGXVpadfP+SK44siEQ=="
+  "resolved" "https://registry.npmjs.org/@crossid/crossid-react/-/crossid-react-0.2.1.tgz"
+  "version" "0.2.1"
   dependencies:
-    "@crossid/crossid-spa-js" "^0.3.0"
+    "@crossid/crossid-spa-js" "^0.3.2"
 
-"@crossid/crossid-spa-js@^0.3.0":
-  "integrity" "sha512-eoPcxEMKQsL9cykMnebff1QGOV0SDwHuNe5zfyXIgqeU1MCVtkBIFl1ZTfTeIkp3EgjErAb6Ok0Eyb2VgTXo2g=="
-  "resolved" "https://registry.npmjs.org/@crossid/crossid-spa-js/-/crossid-spa-js-0.3.0.tgz"
-  "version" "0.3.0"
+"@crossid/crossid-spa-js@^0.3.2":
+  "integrity" "sha512-nvv3UOFy/qCrcAbOnqSvGaHXsmWjvmrC0X9nBSzTLYSBKg/BQ5pCK1bYmcpwlLIEH7SpDZdmYsYbDlKLgmgfhg=="
+  "resolved" "https://registry.npmjs.org/@crossid/crossid-spa-js/-/crossid-spa-js-0.3.2.tgz"
+  "version" "0.3.2"
 
 "@csstools/convert-colors@^1.4.0":
   "integrity" "sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw=="
