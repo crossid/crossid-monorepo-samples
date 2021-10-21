@@ -3,7 +3,7 @@ static_sites:
   - name: react-frontend
     environment_slug: node-js
     github:
-      repo: crossid/sample-do-monorepo
+      repo: crossid/sample-monorepo
       branch: main
       deploy_on_push: true
     source_dir: frontend-react
@@ -23,7 +23,7 @@ static_sites:
   - name: vue-frontend
     environment_slug: node-js
     github:
-      repo: crossid/sample-do-monorepo
+      repo: crossid/sample-monorepo
       branch: main
       deploy_on_push: true
     source_dir: frontend-vue

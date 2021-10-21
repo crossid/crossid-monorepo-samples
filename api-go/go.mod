@@ -1,4 +1,4 @@
-module github.com/crossid/sample-do-monorepo/api
+module github.com/crossid/sample-monorepo/api
 
 go 1.16
 
