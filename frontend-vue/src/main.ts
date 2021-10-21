@@ -1,0 +1,46 @@
+import { createApp } from "vue";
+import App from "./App.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import Unprotected from "./components/Unprotected.vue";
+import Posts from "./components/Posts.vue";
+import { create } from "@crossid/vue-wrapper";
+
+async function init() {
+  const [AuthProvider, AuthCallback] = await create({
+    tenant_id: process.env.VUE_APP_CID_TENANT_ID || "",
+    client_id: process.env.VUE_APP_CID_CLIENT_ID || "",
+    audience: [process.env.VUE_APP_CID_AUDIENCE || ""],
+    scope: process.env.REACT_APP_CID_SCOPE || "openid profile email",
+    cache_type: "session_storage",
+  });
+
+  const routes = [
+    {
+      path: "/",
+      name: "Unprotected",
+      component: Unprotected,
+    },
+    {
+      path: "/posts",
+      name: "Posts",
+      component: Posts,
+    },
+    {
+      path: "/callback",
+      name: "AuthCallback",
+      component: AuthCallback,
+    },
+  ];
+  const router = createRouter({
+    history: createWebHistory(),
+    routes,
+  });
+
+  createApp(App)
+    .use(router)
+    .component("AuthProvider", AuthProvider)
+    .component("AuthCallback", AuthCallback)
+    .mount("#app");
+}
+
+init();

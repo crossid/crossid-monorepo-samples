@@ -21,6 +21,27 @@ spec:
         #  value: "<app_id>"
         - key: REACT_APP_CID_SCOPE
           value: "openid"
+    - name: vue-frontend
+      environment_slug: node-js
+      github:
+        repo: crossid/sample-do-monorepo
+        branch: main
+        deploy_on_push: true
+      source_dir: frontend-vue
+      routes:
+        - path: /vue
+      catchall_document: index.html
+      build_command: npm run build
+      envs:
+        - key: VUE_APP_CID_TENANT_ID
+          value: "<tenant>"
+        - key: VUE_APP_CID_CLIENT_ID
+          value: "<client_id>"
+        #- key: REACT_APP_CID_AUDIENCE
+        #  value: "<app_id>"
+        - key: VUE_APP_CID_SCOPE
+          value: "openid"
+
   services:
     - name: api-go
       environment_slug: go
