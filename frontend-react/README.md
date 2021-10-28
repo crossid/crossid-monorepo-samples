@@ -2,11 +2,6 @@
 
 React frontend with user authentication.
 
-# Prerequisite
-
-- Have a Crossid tenant, or [sign up](https://crossid.io/signup) for free.
-- [https://developer.crossid.io/docs/langs/frontend/react] a Single Page Application (SPA) in Crossid.
-
 # Start locally
 
 to start run:
