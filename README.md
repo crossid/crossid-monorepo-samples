@@ -33,7 +33,23 @@ Then run:
 doctl apps create --spec .do/app.yaml
 ```
 
-Once app components deployed, go to
+Once app deployed, in DigitalOcean control pane, take a note of the app's public URL (references below as `{public_url}`).
+
+Then, in Crossid admin's application page, set the following:
+
+_Login Redirect URIs_:
+
+- https://{public_url}/react/
+- https://{public_url}/vue/callback
+
+_Logout redirect URIs_:
+
+- https://{public_url}/react/
+- https://{public_url}/vue
+
+_Allowed CORS Origins_:
+
+- https://{public_url}\*
 
 ## What is Crossid?
 

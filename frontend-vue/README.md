@@ -17,8 +17,8 @@ Then navigate to: `http://localhost:3000/vue`
 
 Note: In your SPA app, put the following parameters:
 
-- _Login Redirect URIs_: http://localhost:3000/vue/
-- _Logout Redirect URIs_: http://localhost:3000/vue/
+- _Login Redirect URIs_: http://localhost:3000/vue/callback
+- _Logout Redirect URIs_: http://localhost:3000/vue
 - _Allowed Cors Origins_: http://localhost:3000\*
 
 ## Learn More
