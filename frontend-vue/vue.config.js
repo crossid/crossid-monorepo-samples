@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: "/vue",
   devServer: {
     proxy: {
       "^/api-go": {
