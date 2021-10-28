@@ -11,23 +11,29 @@ It let you:
 # Prerequisite
 
 - Have a Crossid tenant, or [sign up](https://crossid.io/signup) for free.
+- [Create a single page application](https://developer.crossid.io/docs/guides/howto/add-spa-app)
 
 # Running locally
 
 - api-go: see [api-go/README.md](./api-go/README.md).
 - frontend-react: see [frontend-react/README.md](./frontend-react/README.md)
+- frontend-vue: see [frontend-vue/README.md](./frontend-vue/README.md)
 
 ## Deploying on Digital Ocean
 
-Click this button to deploy the app to the DigitalOcean App Platform.
+Note: when creating the single page app, put a temporary URLs in _Redirect URI_ and _Logout URI_ until the app is deployed.
 
-[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/crossid/sample-monorepo/tree/main)
+- Install doctl[https://github.com/digitalocean/doctl]
+- Form the repo.
+- Change env vars in `api.yaml` such: `REACT_APP_CID_TENANT_ID`, `REACT_APP_CID_CLIENT_ID`, `VUE_APP_CID_TENANT_ID`, `VUE_APP_CID_CLIENT_ID` and `ISSUER_BASE_URL`.
 
-or if you have `doctl` installed then run:
+Then run:
 
-`doctl apps create --spec .do/app.yaml`
+```bash
+doctl apps create --spec .do/app.yaml
+```
 
-Note: Using the button disables the ability to automatically re-deploy when pushing to a branch or tag as you are using this repo directly, for more info see [Deploying the App](https://github.com/digitalocean/sample-nodejs#deploying-the-app)
+Once app components deployed, go to
 
 ## What is Crossid?
 

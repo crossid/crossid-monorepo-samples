@@ -19,17 +19,17 @@ async function init() {
 
   const routes = [
     {
-      path: "/",
+      path: "/vue/",
       name: "Unprotected",
       component: Unprotected,
     },
     {
-      path: "/posts",
+      path: "/vue/posts",
       name: "Posts",
       component: Posts,
     },
     {
-      path: "/callback",
+      path: "/vue/callback",
       name: "AuthCallback",
       component: AuthCallback,
     },

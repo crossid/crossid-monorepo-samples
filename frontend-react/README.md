@@ -2,6 +2,13 @@
 
 React frontend with user authentication.
 
+# Prerequisite
+
+- Have a Crossid tenant, or [sign up](https://crossid.io/signup) for free.
+- [https://developer.crossid.io/docs/langs/frontend/react] a Single Page Application (SPA) in Crossid.
+
+# Start locally
+
 to start run:
 
 ```bash
@@ -11,10 +18,13 @@ REACT_APP_CID_SCOPE='openid' \
 npm start
 ```
 
-# Prerequisite
+Then navigate to: `http://localhost:3000/react`
 
-- Have a Crossid tenant, or [sign up](https://crossid.io/signup) for free.
-- [https://developer.crossid.io/docs/langs/frontend/react] a Single Page Application (SPA) in Crossid.
+Note: In your SPA app, put the following parameters:
+
+- _Login Redirect URIs_: http://localhost:3000/react/
+- _Logout Redirect URIs_: http://localhost:3000/react/
+- _Allowed Cors Origins_: http://localhost:3000\*
 
 ## Learn More
 

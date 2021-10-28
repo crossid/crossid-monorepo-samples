@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Unprotected Page</h1>
-    <router-link to="/posts">Try to consume protected</router-link>
+    <router-link to="/vue/posts">Try to consume protected</router-link>
   </div>
 </template>
 
