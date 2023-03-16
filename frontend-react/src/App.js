@@ -1,37 +1,42 @@
 import { useEffect, useState } from "react";
-import { Router, Switch, Route, Link } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Layout from "./Layout";
 import { AuthProvider, useAuth } from "@crossid/crossid-react";
 import ProtectedRoute from "./ProtectedRoute";
 
-const basename = "/react";
+export const basename = "/react";
 
 function App() {
-  const history = createBrowserHistory({ basename });
-
+  const tenant_id = process.env.REACT_APP_CID_TENANT_ID || "";
+  const region = process.env.REACT_APP_CID_REGION || "";
+  const redirect_uri = `${window.location.origin}${basename}/`;
   return (
     <AuthProvider
-      tenant_id={process.env.REACT_APP_CID_TENANT_ID || ""}
+      domain={`${tenant_id}.${region}.crossid.io`}
       client_id={process.env.REACT_APP_CID_CLIENT_ID || ""}
-      redirect_uri={`${window.location.origin}${basename}/`}
+      redirect_uri={redirect_uri}
       post_logout_redirect_uri={`${window.location.origin}${basename}/`}
       audience={[process.env.REACT_APP_CID_AUDIENCE || ""]}
-      onRedirectTo={(state) => history.push(state.return_to)}
-      scope={process.env.REACT_APP_CID_SCOPE || ""}
+      onRedirectTo={(state) => {
+        window.location.replace(state.return_to);
+      }}
+      scope={process.env.REACT_APP_CID_SCOPE || "openid email"}
       cache_type="session_storage"
     >
-      <Router history={history}>
+      <Router basename={basename}>
         <Layout>
           <div>
-            <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
-              <Route path="/posts" exact>
-                <ProtectedRoute path="/posts">{() => <Posts />}</ProtectedRoute>
-              </Route>
-            </Switch>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/posts"
+                element={
+                  <ProtectedRoute path="/posts">
+                    {() => <Posts />}
+                  </ProtectedRoute>
+                }
+              ></Route>
+            </Routes>
           </div>
         </Layout>
       </Router>

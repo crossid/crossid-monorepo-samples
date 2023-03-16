@@ -8,6 +8,7 @@ to start run:
 
 ```bash
 REACT_APP_CID_TENANT_ID=<tenant_id> \
+REACT_APP_CID_REGION=<region> \
 REACT_APP_CID_CLIENT_ID=<client_id> \
 REACT_APP_CID_SCOPE='openid' \
 npm start
