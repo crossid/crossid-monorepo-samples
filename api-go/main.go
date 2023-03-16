@@ -31,7 +31,7 @@ func main() {
 			log.Printf(format, args...)
 		},
 		KeyFunc: func(ctx context.Context, t *jwt.Token) (interface{}, error) {
-			return jwks.KeyFunc(t)
+			return jwks.Keyfunc(t)
 		},
 	})
 
@@ -47,18 +47,18 @@ func main() {
 		w.WriteHeader(200)
 		json.NewEncoder(w).Encode([]map[string]interface{}{
 			{
-				"id": "1",
-				"name": fmt.Sprintf("Hello %v", claims["sub"]),
+				"id":          "1",
+				"name":        fmt.Sprintf("Hello %v", claims["sub"]),
 				"description": "This is a personal post.",
 			},
 			{
-				"id": "2",
-				"name": "What is Crossid",
+				"id":          "2",
+				"name":        "What is Crossid",
 				"description": "Crossid is a lean identity platform.",
 			},
 			{
-				"id": "3",
-				"name": "Can I start free?",
+				"id":          "3",
+				"name":        "Can I start free?",
 				"description": "sure thing, visit crossid website for more.",
 			},
 		})
