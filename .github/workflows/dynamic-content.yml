@@ -37,7 +37,6 @@ jobs:
           confirm_and_push: false
           files: |
             README.md
-            auth/README.md
             .templates/LICENSE.md=LICENSE.md
             .templates/SECURITY.md=SECURITY.md
             .templates/CODE_OF_CONDUCT.md=CODE_OF_CONDUCT.md
