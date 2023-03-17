@@ -3,8 +3,14 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Layout({ children }) {
-  const { idToken, loading, error, loginWithRedirect, logoutWithRedirect } =
-    useAuth();
+  const {
+    idToken,
+    loading,
+    error,
+    loginWithRedirect,
+    logoutWithRedirect,
+    signupWithRedirect,
+  } = useAuth();
   const [open, setOpen] = useState(false);
 
   if (error) {
@@ -20,13 +26,17 @@ export default function Layout({ children }) {
     return <span className="bg-indigo-50">loading...</span>;
   }
 
-  const signin = () => {
-    loginWithRedirect({ state: { return_to: "/" } });
-  };
+  function signin() {
+    loginWithRedirect({ state: { return_to: "/react" } });
+  }
 
-  const signout = () => {
-    logoutWithRedirect({ state: { return_to: "/" } });
-  };
+  function signout() {
+    logoutWithRedirect({ state: { return_to: "/react" } });
+  }
+
+  function signup() {
+    signupWithRedirect({ state: { return_to: "/react" } });
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -52,17 +62,21 @@ export default function Layout({ children }) {
                 {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                 <NavLink
                   to="/"
-                  className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                  exact
-                  activeClassName="border-indigo-500"
+                  className={({ isActive }) =>
+                    "text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" +
+                    (isActive ? " border-indigo-500" : "")
+                  }
+                  end
                   aria-current="page"
                 >
                   Home
                 </NavLink>
                 <NavLink
                   to="/posts"
-                  activeClassName="border-indigo-500"
-                  className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className={({ isActive }) =>
+                    "text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" +
+                    (isActive ? " border-indigo-500" : "")
+                  }
                 >
                   Posts
                 </NavLink>
@@ -70,23 +84,28 @@ export default function Layout({ children }) {
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
               {!idToken && (
-                <button
-                  type="button"
-                  className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={() => {
-                    loginWithRedirect({ state: { return_to: "/" } });
-                  }}
-                >
-                  Sign In
-                </button>
+                <>
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={signin}
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={signup}
+                  >
+                    Sign Up
+                  </button>
+                </>
               )}
               {idToken && (
                 <button
                   type="button"
                   className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={() => {
-                    logoutWithRedirect({ state: { return_to: "/" } });
-                  }}
+                  onClick={signout}
                 >
                   Sign Out
                 </button>
@@ -140,9 +159,13 @@ export default function Layout({ children }) {
               <NavLink
                 to="/"
                 onClick={() => setOpen(false)}
-                exact
-                className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                activeClassName="bg-indigo-50 border-indigo-500 text-indigo-700"
+                end
+                className={({ isActive }) =>
+                  "block pl-3 pr-4 py-2 border-l-4 text-base font-medium" +
+                  (isActive
+                    ? " bg-indigo-50 border-indigo-500 text-indigo-700"
+                    : "")
+                }
                 aria-current="page"
               >
                 Home
@@ -150,8 +173,12 @@ export default function Layout({ children }) {
               <NavLink
                 to="/posts"
                 onClick={() => setOpen(false)}
-                className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                activeClassName="bg-indigo-50 border-indigo-500 text-indigo-700"
+                className={({ isActive }) =>
+                  "block pl-3 pr-4 py-2 border-l-4 text-base font-medium" +
+                  (isActive
+                    ? " bg-indigo-50 border-indigo-500 text-indigo-700"
+                    : "")
+                }
               >
                 Posts
               </NavLink>
@@ -171,12 +198,21 @@ export default function Layout({ children }) {
               )}
               <div className="mt-3 space-y-1">
                 {!idToken && (
-                  <button
-                    onClick={signin}
-                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                  >
-                    Sign in
-                  </button>
+                  <>
+                    <button
+                      onClick={signin}
+                      className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                    >
+                      Sign in
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      onClick={signup}
+                    >
+                      Sign Up
+                    </button>
+                  </>
                 )}
                 {idToken && (
                   <button
