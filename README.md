@@ -1,55 +1,11 @@
-# sample-monorepo
+# Crossid Monorepo Samples
 
-A mono repo with multiple services and frontends, demonstrating how to perform authentication and authorization on different languages and frameworks with [Crossid](https://crossid.io).
+A _monorepo_ with multiple services (backends) and frontends, demonstrating how to perform authentication and authorization on different languages and frameworks with [Crossid](https://crossid.io).
 
 It let you:
 
 - Protect APIs with OAuth2 access token, for [Golang](./api-go).
-- Authenticate users at Crossid and consume the protected APIs, for [React](./frontend-react).
-- One click/command deployment on DigitalOcean.
-
-# Prerequisite
-
-- Have a Crossid tenant, or [sign up](https://crossid.io/signup) for free.
-- [Create a single page application](https://developer.crossid.io/docs/guides/howto/add-spa-app)
-
-# Running locally
-
-- api-go: see [api-go/README.md](./api-go/README.md).
-- frontend-react: see [frontend-react/README.md](./frontend-react/README.md)
-- frontend-vue: see [frontend-vue/README.md](./frontend-vue/README.md)
-
-## Deploying on Digital Ocean
-
-Note: when creating the single page app, put a temporary URLs in _Redirect URI_ and _Logout URI_ until the app is deployed.
-
-- Install doctl[https://github.com/digitalocean/doctl]
-- Form the repo.
-- Change env vars in `api.yaml` such: `REACT_APP_CID_TENANT_ID`, `REACT_APP_CID_CLIENT_ID`, `VUE_APP_CID_TENANT_ID`, `VUE_APP_CID_CLIENT_ID` and `ISSUER_BASE_URL`.
-
-Then run:
-
-```bash
-doctl apps create --spec .do/app.yaml
-```
-
-Once app deployed, in DigitalOcean control pane, take a note of the app's public URL (references below as `{public_url}`).
-
-Then, in Crossid admin's application page, set the following:
-
-_Login Redirect URIs_:
-
-- https://{public_url}/react/
-- https://{public_url}/vue/callback
-
-_Logout redirect URIs_:
-
-- https://{public_url}/react/
-- https://{public_url}/vue
-
-_Allowed CORS Origins_:
-
-- https://{public_url}\*
+- Authenticate users and consume the protected APIs, for [React](./frontend-react) and [Vue](./frontend-vue).
 
 <!-- START readme-templates/samples-footer.mustache -->
 <!-- END readme-templates/samples-footer.mustache -->
