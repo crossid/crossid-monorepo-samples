@@ -1,0 +1,73 @@
+name: Docs Maintenance
+
+on:
+  push:
+    paths:
+      - README.md
+    branches:
+      - main
+  schedule:
+    - cron: "10 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  update_docs:
+    name: "Update Docs"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Fetching Repository Contents"
+        uses: actions/checkout@main
+
+      - name: "Dynamic Template Render"
+        uses: varunsridharan/action-repository-meta@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create template files
+        run: |
+          mkdir ./.templates
+          echo '<!-- include common/LICENSE_MIT.md -->' > ./.templates/LICENSE.md
+          echo '<!-- include common/SECURITY.md -->' > ./.templates/SECURITY.md
+          echo '<!-- include common/CODE_OF_CONDUCT.md -->' > ./.templates/CODE_OF_CONDUCT.md
+
+      - name: "Update README.md"
+        uses: "varunsridharan/action-dynamic-readme@main"
+        with:
+          GLOBAL_TEMPLATE_REPOSITORY: crossid/repos-metadata@main
+          confirm_and_push: false
+          files: |
+            README.md
+            auth/README.md
+            .templates/LICENSE.md=LICENSE.md
+            .templates/SECURITY.md=SECURITY.md
+            .templates/CODE_OF_CONDUCT.md=CODE_OF_CONDUCT.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: documentation files updated [skip ci]"
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          signoff: false
+          branch: github-actions/docs-updates-${{ github.run_number }}
+          delete-branch: true
+          title: Update documentation files
+          body: Documentation files has been updated to last recent version
+          labels: |
+            skip-ci
+            docs
+      - name: Enable pull request automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+      - name: Auto approve
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.AUTO_APPROVAL_TOKEN }}
+          number: ${{ steps.cpr.outputs.pull-request-number }}

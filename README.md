@@ -51,13 +51,5 @@ _Allowed CORS Origins_:
 
 - https://{public_url}\*
 
-## What is Crossid?
-
-Crossid can:
-
-- Sign users in using various _passwordless_ authentication factors (e.g., _otp_, _fingerprint_, etc...)
-- Sign users in via social providers (e,g. _Facebook_) or enterprise providers (e.g., _Azure_)
-- Multi factor authentication.
-- Issue signed OAuth2 and Openid-Connect access tokens to protect API calls.
-- Manage user profiles and access.
-- Authenticate machines.
+<!-- START readme-templates/samples-footer.mustache -->
+<!-- END readme-templates/samples-footer.mustache -->
