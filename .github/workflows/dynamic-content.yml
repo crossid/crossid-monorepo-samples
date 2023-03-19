@@ -25,10 +25,10 @@ jobs:
 
       - name: Create template files
         run: |
-          mkdir ./.templates
-          echo '<!-- include common/LICENSE_MIT.md -->' > ./.templates/LICENSE.md
-          echo '<!-- include common/SECURITY.md -->' > ./.templates/SECURITY.md
-          echo '<!-- include common/CODE_OF_CONDUCT.md -->' > ./.templates/CODE_OF_CONDUCT.md
+          mkdir -p ./tmp
+          echo '<!-- include common/LICENSE_MIT.md -->' > ./tmp/LICENSE.md
+          echo '<!-- include common/SECURITY.md -->' > ./tmp/SECURITY.md
+          echo '<!-- include common/CODE_OF_CONDUCT.md -->' > ./tmp/CODE_OF_CONDUCT.md
 
       - name: "Update README.md"
         uses: "varunsridharan/action-dynamic-readme@main"
@@ -37,9 +37,9 @@ jobs:
           confirm_and_push: false
           files: |
             README.md
-            .templates/LICENSE.md=LICENSE.md
-            .templates/SECURITY.md=SECURITY.md
-            .templates/CODE_OF_CONDUCT.md=CODE_OF_CONDUCT.md
+            tmp/LICENSE.md=LICENSE.md
+            tmp/SECURITY.md=SECURITY.md
+            tmp/CODE_OF_CONDUCT.md=CODE_OF_CONDUCT.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create pull request
