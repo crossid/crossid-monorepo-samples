@@ -47,6 +47,7 @@ We'll endeavor to respond quickly, and will keep you updated throughout the proc
 
 ## License & Conduct
 
-- This project is licensed under the [****]() © [Crossid](https://crossid.io)
-- [Code of Conduct]()
+- This project is licensed under the [**MIT License**](https://github.com/crossid/crossid-monorepo-samples/blob/main/LICENSE.md) © [Crossid](https://crossid.io)
+- [Code of Conduct](https://github.com/crossid/crossid-monorepo-samples/blob/main/CODE_OF_CONDUCT.md)
+
 <!-- END readme-templates/samples-footer.mustache -->
